@@ -15,28 +15,29 @@ class _LanguagePageState extends State<LanguagePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black87),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
+        centerTitle: true,
         title: const Text(
           'Settings',
           style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
             fontFamily: 'LexendDeca',
-            fontSize: 19,
-            fontWeight: FontWeight.w300,
-            color: Colors.black87,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 32),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -45,25 +46,25 @@ class _LanguagePageState extends State<LanguagePage> {
                   style: TextStyle(
                     fontFamily: 'LexendDeca',
                     fontSize: 20,
-                    fontWeight: FontWeight.w300,
-                    color: Colors.black87,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
                   ),
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD9D9D9),
+                    color: const Color(0xFFEEEEEE),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       _buildLanguageButton(
-                        label: 'AR',
+                        text: 'AR',
                         isSelected: !_isEnglish,
                         onTap: () => setState(() => _isEnglish = false),
                       ),
                       _buildLanguageButton(
-                        label: 'EN',
+                        text: 'EN',
                         isSelected: _isEnglish,
                         onTap: () => setState(() => _isEnglish = true),
                       ),
@@ -79,28 +80,25 @@ class _LanguagePageState extends State<LanguagePage> {
   }
 
   Widget _buildLanguageButton({
-    required String label,
+    required String text,
     required bool isSelected,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 12,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFF149954) : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
-          label,
+          text,
           style: TextStyle(
-            fontFamily: 'LexendDeca',
+            color: isSelected ? Colors.white : Colors.black,
             fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: isSelected ? Colors.white : Colors.black87,
+            fontFamily: 'LexendDeca',
+            fontWeight: FontWeight.w400,
           ),
         ),
       ),

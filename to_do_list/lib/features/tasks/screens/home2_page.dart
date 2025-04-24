@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import '../models/task.dart';
-import 'profile_settings_page.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../features/models/task.dart';
 import 'add_task_page.dart';
-import 'lets_start_page.dart';
+import '../../../features/auth/screens/lets_start_page.dart';
+import '../../../features/profile/screens/profile_settings_page.dart';
 
 class Home2Page extends StatefulWidget {
   final String username;
@@ -31,9 +34,12 @@ class _Home2PageState extends State<Home2Page> {
     if (result != null) {
       setState(() {
         _tasks.add(Task(
+          id: DateTime.now().toString(),
           title: result['title']!,
           description: result['description'] ?? '',
-          dateTime: DateTime.now(),
+          dueDate: DateTime.now(),
+          category: 'General',
+          createdAt: DateTime.now(),
         ));
       });
     }
@@ -243,8 +249,8 @@ class _Home2PageState extends State<Home2Page> {
                                 ),
                               ),
                               Text(
-                                '${task.dateTime.day}/${task.dateTime.month}/${task.dateTime.year}\n'
-                                '${task.dateTime.hour.toString().padLeft(2, '0')}:${task.dateTime.minute.toString().padLeft(2, '0')} ${task.dateTime.hour >= 12 ? 'PM' : 'AM'}',
+                                '${task.dueDate.day}/${task.dueDate.month}/${task.dueDate.year}\n'
+                                '${task.dueDate.hour.toString().padLeft(2, '0')}:${task.dueDate.minute.toString().padLeft(2, '0')} ${task.dueDate.hour >= 12 ? 'PM' : 'AM'}',
                                 style: const TextStyle(
                                   fontFamily: 'LexendDeca',
                                   fontSize: 12,

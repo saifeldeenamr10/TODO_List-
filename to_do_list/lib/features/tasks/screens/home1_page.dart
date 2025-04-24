@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../models/task.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../features/models/task.dart';
 import 'home2_page.dart';
-import 'profile_settings_page.dart';
 import 'add_task_page.dart';
-import 'lets_start_page.dart';
+import '../../../features/auth/screens/lets_start_page.dart';
+import '../../../features/profile/screens/profile_settings_page.dart';
 
 class Home1Page extends StatefulWidget {
   final String username;
@@ -27,9 +30,12 @@ class _Home1PageState extends State<Home1Page> {
         result['title']!.isNotEmpty) {
       setState(() {
         _tasks.add(Task(
+          id: DateTime.now().toString(),
           title: result['title']!,
           description: result['description'] ?? '',
-          dateTime: DateTime.now(),
+          dueDate: DateTime.now(),
+          category: 'General',
+          createdAt: DateTime.now(),
         ));
       });
 
